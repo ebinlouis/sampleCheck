@@ -5,6 +5,9 @@
         "start": "node server.js"
     },
     "dependencies": {
-        "express": "^4.18.2"
+        "express": "^2.5.11"
+    },
+    "devDependencies": {
+        "axios": "^1.7.7"
     }
 }

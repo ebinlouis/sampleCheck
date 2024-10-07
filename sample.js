@@ -1,4 +1,4 @@
-const express = require('express'); // Correct import
+import express from 'express';
 const app = express(); // Initialize Express app
 
 // Define a simple route

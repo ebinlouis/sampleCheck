@@ -8,8 +8,8 @@ const app = express();
 const port = 3001;
 
 // Define __dirname using fileURLToPath
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = dirname(__filename);
 
 // GitHub repo information
 const owner = 'ebinlouis';

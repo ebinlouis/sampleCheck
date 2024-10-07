@@ -41,20 +41,10 @@ async function downloadFile(fileUrl, filePath) {
             responseType: 'arraybuffer',
         });
 
-        const localFilePath = path.join(
-            __dirname,
-            '..',
-            '..',
-            '..',
-            '..',
-            '..',
-            '..',
-            filePath
-        );
+        const localFilePath = path.join(__dirname, filePath);
         const dir = path.dirname(localFilePath);
 
-        alert(__dirname);
-        alert(__filename);
+        console.log(__dirname);
 
         // Ensure the local directory exists
         if (!fs.existsSync(dir)) {

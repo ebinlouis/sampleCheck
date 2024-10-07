@@ -2,12 +2,13 @@
     "name": "my-app",
     "version": "1.0.0",
     "scripts": {
-        "start": "node server.js"
+        "start": "vercel dev"
     },
     "dependencies": {
         "express": "^2.5.11"
     },
     "devDependencies": {
-        "axios": "^1.7.7"
+        "axios": "^1.7.7",
+        "vercel": "^37.6.1"
     }
 }

@@ -1,8 +1,8 @@
-import express from 'express';
-import axios from 'axios';
-import { existsSync, mkdirSync, writeFileSync } from 'fs';
-import { join, dirname } from 'path';
-import { fileURLToPath } from 'url';
+const express = require('express');
+const axios = require('axios');
+const { existsSync, mkdirSync, writeFileSync } = require('fs');
+const { join, dirname } = require('path');
+const { fileURLToPath } = require('url');
 
 const app = express();
 const port = 3001;

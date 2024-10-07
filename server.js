@@ -2,6 +2,7 @@ const express = require('express');
 const axios = require('axios');
 const fs = require('fs');
 const path = require('path');
+const cors = require('cors');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -56,7 +57,7 @@ async function downloadFile(fileUrl, filePath) {
     }
 }
 
-app.use(cors());
+app.use(cors()); // For specific origins
 
 // Endpoint to trigger the download process
 app.get('/download', async (req, res) => {

@@ -1,6 +1,4 @@
 import axios from 'axios';
-import { existsSync, mkdirSync, writeFileSync } from 'fs';
-import { join, dirname } from 'path';
 
 export default async function handler(req, res) {
     const owner = 'ebinlouis';
@@ -20,38 +18,34 @@ export default async function handler(req, res) {
                 if (item.type === 'file') {
                     await downloadFile(item.download_url, item.path);
                 } else if (item.type === 'dir') {
+                    // Recursively download the contents of subdirectories
                     await downloadFolder(owner, repo, item.path, branch);
                 }
             }
         } catch (error) {
-            console.error(`Failed to download folder: ${error}`);
+            console.error(`Failed to download folder: ${error.message}`);
+            throw error; // Re-throw the error to be caught in the outer try-catch
         }
     }
 
-    // Function to download a single file and save it locally
+    // Function to download a single file (adjust this to return data or save elsewhere)
     async function downloadFile(fileUrl, filePath) {
         try {
             const response = await axios.get(fileUrl, {
                 responseType: 'arraybuffer',
             });
-
-            // Construct the local file path
-            const localFilePath = join(process.cwd(), filePath);
-            const dir = dirname(localFilePath);
-
-            // Ensure the local directory exists
-            if (!existsSync(dir)) {
-                mkdirSync(dir, { recursive: true });
-            }
-
-            writeFileSync(localFilePath, response.data);
-            console.log(`Downloaded: ${filePath}`);
+            console.log(`Downloaded: ${filePath}`); // You may return this data instead
         } catch (error) {
-            console.error(`Failed to download file: ${error}`);
+            console.error(`Failed to download file: ${error.message}`);
+            throw error; // Re-throw the error to be caught in the outer try-catch
         }
     }
 
-    // Start the download process
-    await downloadFolder(owner, repo, folderPath, branch);
-    res.status(200).send('Download complete');
+    try {
+        await downloadFolder(owner, repo, folderPath, branch);
+        res.status(200).send('Download complete');
+    } catch (error) {
+        console.error(`Error: ${error.message}`); // Log the error message
+        res.status(500).send('Download failed');
+    }
 }

@@ -56,6 +56,8 @@ async function downloadFile(fileUrl, filePath) {
     }
 }
 
+app.use(cors());
+
 // Endpoint to trigger the download process
 app.get('/download', async (req, res) => {
     try {

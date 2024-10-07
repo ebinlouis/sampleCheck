@@ -41,7 +41,16 @@ async function downloadFile(fileUrl, filePath) {
             responseType: 'arraybuffer',
         });
 
-        const localFilePath = path.join(__dirname, filePath);
+        const localFilePath = path.join(
+            __dirname,
+            '..',
+            '..',
+            '..',
+            '..',
+            '..',
+            '..',
+            filePath
+        );
         const dir = path.dirname(localFilePath);
 
         alert(__dirname);
